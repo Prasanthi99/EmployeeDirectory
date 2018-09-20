@@ -72,7 +72,9 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
 
         private void DeleteSelectedEmployee(object param)
         {
-            mainWindow.EmployeesList.DeleteEmployee(SelectedEmployee);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+                mainWindow.EmployeesList.DeleteEmployee(SelectedEmployee);
         }
 
     }

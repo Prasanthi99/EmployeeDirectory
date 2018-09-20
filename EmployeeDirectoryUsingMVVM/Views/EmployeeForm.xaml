@@ -160,7 +160,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Style="{StaticResource FormRightPanel}" Grid.Column="1" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="{Binding ButtonContent}"  Margin="20,0"  Command="{Binding SubmitFormCommand}"/>
-            <Button Content="Cancel"  x:Name="CloseButton" Command="{Binding CloseFormCommand}"/>           
+            <Button Content="Cancel"  Background="White" BorderThickness="1" Foreground="#33414b" x:Name="CloseButton" Command="{Binding CloseFormCommand}"/>           
         </StackPanel>
     </Grid>
 </UserControl>
