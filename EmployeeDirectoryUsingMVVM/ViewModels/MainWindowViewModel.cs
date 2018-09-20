@@ -77,17 +77,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
             get { return new DelegateCommand(DisplaySelectedContainer); }
         }
 
-        private bool userControlVisibility=true;
-        public bool UserControlVisibility
-        {
-            get { return userControlVisibility; }
-            set
-            {
-                userControlVisibility = value;
-                OnPropertyChanged("UserControlVisibility");
-            }
-        }
-
+        
         private bool emptyContainerVisibility = false;
         public bool EmptyContainerVisibility
         {
