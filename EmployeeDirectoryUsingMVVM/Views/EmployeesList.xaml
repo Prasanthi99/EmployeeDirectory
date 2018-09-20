@@ -139,7 +139,6 @@
         </DataGrid.Columns>
             
         </DataGrid>
-        <!--<Border Height="50" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >-->
         <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="6" Grid.Row="1" TextAlignment="Center" Text="No items found" Visibility="{Binding Items.IsEmpty, Converter={StaticResource VisibilityConverter}, ElementName=ListView}"/>
        
     </Grid>

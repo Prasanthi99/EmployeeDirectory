@@ -45,21 +45,18 @@
                     <TextBlock x:Name="Home" Visibility="{Binding TextBlockVisibility,Converter={StaticResource VisibilityConverter}}" Text="Home"/>
                 </StackPanel>
             </Button>
-            <!--Click="EmployeesButtonClicked"-->
             <Button  Name="EmployeesButton" Background="{Binding EmployeesButtonBackground,Mode =TwoWay}" Command="{Binding DisplayContainerCommand}" CommandParameter="{Binding ElementName=EmployeesButton}">
                 <StackPanel Orientation="Horizontal" >
                     <fa:FontAwesome Icon="user"/>
                     <TextBlock x:Name="EmployeeDirectory" Visibility="{Binding TextBlockVisibility,Converter={StaticResource VisibilityConverter}}" Text="Employees"/>
                 </StackPanel>
             </Button>
-            <!--Click="CalenderButtonClicked"-->
             <Button  Name="CalenderButton" Command="{Binding DisplayContainerCommand}" Background="{Binding CalenderButtonBackground,Mode =TwoWay}"  CommandParameter="{Binding ElementName=CalenderButton}">
                 <StackPanel Orientation="Horizontal" >
                     <fa:FontAwesome Icon="Calendar"/>
                     <TextBlock x:Name="Calender" Visibility="{Binding TextBlockVisibility,Converter={StaticResource VisibilityConverter}}"  Text="Calender"/>
                 </StackPanel>
             </Button>
-            <!--Click="MyTeamButtonClicked"-->
             <Button Name="MyTeamButton" Command="{Binding DisplayContainerCommand}" Background="{Binding MyTeamButtonBackground,Mode =TwoWay}"  CommandParameter="{Binding ElementName=MyTeamButton}">
                 <StackPanel Orientation="Horizontal">
                     <fa:FontAwesome Icon="Group"/>
@@ -70,13 +67,8 @@
         <!--<Grid Name="Home"  Grid.Row="1" Grid.Column="1" Background="White">
             <WebBrowser Source="https://technovert.com/about"/>
         </Grid>-->
-
         
-        <!--<Grid HorizontalAlignment="Stretch" x:Name="OverlayGrid"  Background="Transparent"  VerticalAlignment="Stretch" >-->
-            <!--<local1:EmployeeForm Visibility="{Binding ChangeControlVisibility}"/>-->
-        <!--Visibility="{Binding UserControlVisibility,Converter={StaticResource VisibilityConverter}}"-->
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Grid.Row="1"  />
-        <!--</Grid>-->
         <Grid Grid.Column="1" Grid.Row="1" Name="EmptyGrid" Visibility="{Binding EmptyContainerVisibility,Converter={StaticResource VisibilityConverter}}" Background="White" >
             <TextBlock Text="Coming soon...." VerticalAlignment="Center"  HorizontalAlignment="Center"  TextAlignment="Center" FontSize="30" Foreground="#33414b"  />
         </Grid>
