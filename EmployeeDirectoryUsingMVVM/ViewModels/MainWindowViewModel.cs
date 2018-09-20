@@ -192,10 +192,10 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
         public void DisplayEmployeeDetails(Employee employee)
         {
             this.SelectedEmployee = employee;
-            var empDetails = new EmployeeDetailsViewModel();
-            empDetails.SelectedEmployee = employee;
+            this.EmployeeDetails = new EmployeeDetailsViewModel();
+            //empDetails.SelectedEmployee = employee;
             this.CurrentViewModel = EmployeeDetails;
-            //this.EmployeeDetails.SelectedEmployee = employee;
+            this.EmployeeDetails.SelectedEmployee = employee;
         }
 
         public void DisplayEmployeeFormToEdit()

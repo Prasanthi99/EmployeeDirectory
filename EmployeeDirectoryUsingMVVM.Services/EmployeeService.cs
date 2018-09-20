@@ -42,14 +42,7 @@ namespace EmployeeDirectoryUsingMVVM.Services
         }
         public List<Models.Employee> GetEmployeesData()
         {
-            var employees = database.Fetch<Employee_Department>("Select * from EMPLOYEE_DEPARTMENT");
-            List<Models.Employee> employeeModels = new List<Models.Employee>();
-            foreach (var employee in employees)
-            {
-                Models.Employee employeeModel = AutoMap.Mapper.Map<EmployeeDirectory.Employee_Department, Models.Employee>(employee);
-                employeeModels.Add(employeeModel);
-            }
-            return employeeModels;
+            return AutoMap.Mapper.Map<IEnumerable<EmployeeDirectory.Employee_Department>, IEnumerable<Models.Employee>>(database.Fetch<Employee_Department>("Select * from EMPLOYEE_DEPARTMENT")).ToList();             
         }
     }
 }

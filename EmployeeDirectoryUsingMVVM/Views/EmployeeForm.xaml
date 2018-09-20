@@ -157,8 +157,9 @@
             </TextBlock>
             <TextBox AcceptsReturn="True"  VerticalContentAlignment="Top" Text="{Binding SelectedEmployee.ProfessionalSummary, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" Width="650" Height="60" x:Name="professionalSummary" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Margin="0,10,30,24" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button x:Name="Save" Content="{Binding ButtonContent}" Command="{Binding SubmitFormCommand}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Style="{StaticResource FormRightPanel}" Grid.Column="1" HorizontalAlignment="Right">
+            <Button x:Name="Save" Content="{Binding ButtonContent}"  Margin="20,0"  Command="{Binding SubmitFormCommand}"/>
+            <Button Content="Cancel"  Background="White" BorderThickness="1" Foreground="#33414b" x:Name="CloseButton" Command="{Binding CloseFormCommand}"/>           
         </StackPanel>
     </Grid>
 </UserControl>

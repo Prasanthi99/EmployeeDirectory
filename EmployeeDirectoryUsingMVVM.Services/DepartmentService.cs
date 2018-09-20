@@ -17,13 +17,7 @@ namespace EmployeeDirectoryUsingMVVM.Services
         }
         public List<Models.Department> GetDepartmentsData()
         {
-            List<Models.Department> departments = new List<Models.Department>();
-            foreach (EmployeeDirectory.Department dept in database.Fetch<EmployeeDirectory.Department>("").ToList())
-            {
-                var department = AutoMap.Mapper.Map<EmployeeDirectory.Department, Models.Department>(dept);
-                departments.Add(department);
-            }
-            return departments;
+            return AutoMap.Mapper.Map<IEnumerable<EmployeeDirectory.Department>, IEnumerable<Models.Department>>(database.Fetch<EmployeeDirectory.Department>("")).ToList();           
         }
     }
 }
