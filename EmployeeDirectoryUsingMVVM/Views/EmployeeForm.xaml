@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="EmployeeDirectoryUsingMVVM.Views.EmployeeForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmployeeDirectoryUsingMVVM.Views"
+             xmlns:vm="clr-namespace:EmployeeDirectoryUsingMVVM.ViewModels"
+             xmlns:model="clr-namespace:EmployeeDirectoryUsingMVVM.Models;assembly=EmployeeDirectoryUsingMVVM.Models"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">    
+    <Grid Margin ="0"  Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource FormTextBox}"/>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource FormButton}"/>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource FormTextBlock}"/>
+            <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource FormDatePicker}"/>
+            <Style TargetType="StackPanel" x:Key="FormLeftPanel">
+                <Setter Property="Margin" Value="30,0,0,0"/>
+            </Style>
+            <Style TargetType="StackPanel" x:Key="FormRightPanel">
+                <Setter Property="Margin" Value="0,0,30,0"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="0,0,30,0"/>
+            </Style>
+        </Grid.Resources>
+
+        <TextBlock Grid.ColumnSpan="3" Margin="0,0,0,10" Text="{Binding FormHeader}" Padding="30,10" FontWeight="Medium" Opacity="0.9" FontSize="16" Background="#EFEFEF" />
+
+       
+        <StackPanel Grid.Row="1" Style="{StaticResource FormLeftPanel}">
+            <TextBlock>
+                <Run Text="FirstName"/>
+                <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                <Run Text="{Binding ElementName=firstname, Path=(Validation.Errors)[0].ErrorContent}" Style="{StaticResource Error}" />
+            </TextBlock>
+            <TextBox x:Name="firstname" Text="{Binding SelectedEmployee.FirstName, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Style="{StaticResource FormRightPanel}">
+            <TextBlock>
+                <Run Text="LastName"/>
+                <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                <Run Text="{Binding ElementName=lastname, Path=(Validation.Errors)[0].ErrorContent}"  Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox x:Name="lastname" Text="{Binding SelectedEmployee.LastName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Style="{StaticResource FormLeftPanel}" >
+            <TextBlock>
+                <Run Text="Email"/>
+                <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                <Run Text="{Binding ElementName=email, Path=(Validation.Errors)[0].ErrorContent}"  Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox x:Name="email" Text="{Binding SelectedEmployee.Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource FormRightPanel}">
+            <TextBlock>
+                <Run Text="Skype"/>
+                <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                <Run Text="{Binding ElementName=skype, Path=(Validation.Errors)[0].ErrorContent}"  Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox x:Name="skype"  Text="{Binding SelectedEmployee.Skype, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource FormRightPanel}">
+            <TextBlock>
+                        <Run Text="Salary"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                        <Run Text="{Binding ElementName=salary, Path=(Validation.Errors)[0].ErrorContent}" Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox x:Name="salary"  Text="{Binding SelectedEmployee.Salary, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal" Style="{StaticResource FormLeftPanel}" >
+            <TextBlock>
+                        <Run Text="Gender"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+            </TextBlock>
+            <RadioButton VerticalContentAlignment="Center" GroupName="Gender" Name="female" Margin="20,0" FontWeight="Medium" Content="Female" IsChecked="{Binding Path=SelectedEmployee.Gender, Converter={StaticResource EnumToRadioButtonConverter}, ConverterParameter={x:Static model:Gender.Female}}"/>
+            <RadioButton GroupName="Gender" VerticalContentAlignment="Center" Name="male" FontWeight="Medium" Content="Male" IsChecked="{Binding Path=SelectedEmployee.Gender, Converter={StaticResource EnumToRadioButtonConverter}, ConverterParameter={x:Static model:Gender.Male}}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Style="{StaticResource FormLeftPanel}" >
+            <TextBlock>
+                        <Run Text="Department"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+            </TextBlock>
+            <ComboBox x:Name="department" ItemsSource="{Binding Departments}"  DisplayMemberPath="Name"  BorderBrush="#33414b" Background="White" Height="32"  Width="300" VerticalContentAlignment="Center" SelectedItem="{Binding SelectedEmployee.Department}" HorizontalAlignment="Left" SelectedIndex="0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Style="{StaticResource FormRightPanel}">
+            <TextBlock>
+                        <Run Text="Team"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+            </TextBlock>
+            <ComboBox x:Name="teamName" ItemsSource="{Binding TeamNames}" SelectedItem="{Binding SelectedEmployee.Team}" BorderBrush="#33414b" Background="White" Height="32"  Width="300" VerticalContentAlignment="Center" HorizontalAlignment="Left" SelectedIndex="0">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ComboBoxItem}">
+                        <Setter Property="FontWeight" Value="Normal"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Style="{StaticResource FormLeftPanel}" >
+            <TextBlock>
+                        <Run Text="Birth Date"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                        <Run Text="{Binding ElementName=birthDate, Path=(Validation.Errors)[0].ErrorContent}"  Style="{StaticResource Error}"/>
+            </TextBlock>
+            <DatePicker  Name="birthDate" SelectedDate="{x:Static sys:DateTime.Today}" Text="{Binding SelectedEmployee.BirthDate, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1" Style="{StaticResource FormRightPanel}" >
+            <TextBlock>
+                        <Run Text="Joining date"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                        <Run Text="{Binding ElementName=joinDate, Path=(Validation.Errors)[0].ErrorContent}" Style="{StaticResource Error}"/>
+            </TextBlock>
+            <DatePicker  Name="joinDate" SelectedDate="{x:Static sys:DateTime.Today}" Text="{Binding SelectedEmployee.JoiningDate, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="6" VerticalAlignment="Center" Style="{StaticResource FormLeftPanel}" >
+            <TextBlock>
+                        <Run Text="Mobile"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                        <Run Text="{Binding ElementName=mobile, Path=(Validation.Errors)[0].ErrorContent}"  Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox x:Name="mobile"  Text="{Binding SelectedEmployee.Mobile, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <Image x:Name="image" Height="80" Source="{Binding SelectedEmployee.Image}"  Grid.Row="6" Grid.Column="1" Stretch="Fill" Margin="50,0" HorizontalAlignment="Left"/>
+        <Button Command="{Binding UploadPictureCommand}" Content="Upload" Grid.Row="6" Grid.Column="1" Margin="30,0" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <!--Click="UploadImageButtonClicked"-->
+        <StackPanel Margin="30,0" Grid.ColumnSpan="2" Grid.Row="7">
+            <TextBlock>
+                        <Run Text="Address"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                        <Run Text="{Binding ElementName=address, Path=(Validation.Errors)[0].ErrorContent}" Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox x:Name="address" Width="650" MaxLength="100" Text="{Binding SelectedEmployee.Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Margin="30,0" Grid.ColumnSpan="2" Grid.Row="8">
+            <TextBlock>
+                        <Run Text="Professional Summary"/>
+                        <Run Text="*" Style="{StaticResource ErrorBaseStyle}"/>
+                        <Run Text="{Binding ElementName=professionalSummary, Path=(Validation.Errors)[0].ErrorContent}"  Style="{StaticResource Error}"/>
+            </TextBlock>
+            <TextBox AcceptsReturn="True"  VerticalContentAlignment="Top" Text="{Binding SelectedEmployee.ProfessionalSummary, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" Width="650" Height="60" x:Name="professionalSummary" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Style="{StaticResource FormRightPanel}" Grid.Column="1" HorizontalAlignment="Right">
+            <Button x:Name="Save" Content="{Binding ButtonContent}"  Margin="20,0"  Command="{Binding SubmitFormCommand}"/>
+            <Button Content="Cancel"  x:Name="CloseButton" Command="{Binding CloseFormCommand}"/>           
+        </StackPanel>
+    </Grid>
+</UserControl>
