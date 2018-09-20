@@ -32,7 +32,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <!--<Image Source="../Images/list.png" Margin="10" ToolTip="List View" Height="26" VerticalAlignment="Center"/>-->
+            
             <Button  VerticalAlignment="Center" x:Name="grid" Command="{Binding ToggleViewCommand}" CommandParameter="{Binding ElementName=grid}" ToolTip="List View" >
                 <Button.Template>
                     <ControlTemplate>
