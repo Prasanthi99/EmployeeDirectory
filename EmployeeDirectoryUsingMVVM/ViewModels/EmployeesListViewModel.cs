@@ -229,8 +229,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
 
         public void AddEmployee(Employee employee)
         {
-            employee.ID = employeeService.AddEmployee(employee);
-            //Employees.Add(employee);
+            employee.ID = employeeService.AddEmployee(employee);            
             AllEmployees.Add(employee);
             Filter();
             Search();
