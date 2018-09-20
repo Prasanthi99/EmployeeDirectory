@@ -48,7 +48,7 @@ namespace EmployeeDirectoryUsingMVVM.Models
             set
             {
                 firstName = value;
-                OnPropertyChanged("FirstName");
+                OnPropertyChanged(nameof(FirstName));
             }
         }
 
@@ -79,7 +79,7 @@ namespace EmployeeDirectoryUsingMVVM.Models
                 OnPropertyChanged("Gender");
             }
         }
-
+        
         private int salary;
         public int Salary
         {

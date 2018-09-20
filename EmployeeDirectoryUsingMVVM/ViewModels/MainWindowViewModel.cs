@@ -66,7 +66,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
                 }
             }
         }
-       
+
         public ICommand ToggleSideBarCommand
         {
             get { return new DelegateCommand(ToggleSideBar); }
@@ -77,7 +77,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
             get { return new DelegateCommand(DisplaySelectedContainer); }
         }
 
-        
+
         private bool emptyContainerVisibility = false;
         public bool EmptyContainerVisibility
         {
@@ -175,7 +175,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
         {
             TextBlockVisibility = !TextBlockVisibility;
         }
-               
+
         private void DisplaySelectedContainer(object param)
         {
             Button button = param as Button;
@@ -192,14 +192,15 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
         public void DisplayEmployeeDetails(Employee employee)
         {
             this.SelectedEmployee = employee;
-            this.EmployeeDetails = new EmployeeDetailsViewModel();
+            var empDetails = new EmployeeDetailsViewModel();
+            empDetails.SelectedEmployee = employee;
             this.CurrentViewModel = EmployeeDetails;
-            this.EmployeeDetails.SelectedEmployee = employee;
+            //this.EmployeeDetails.SelectedEmployee = employee;
         }
 
         public void DisplayEmployeeFormToEdit()
         {
-            DisplayEmployeeForm();    
+            DisplayEmployeeForm();
             this.EmployeeForm.CurrentEmployee = this.SelectedEmployee;
             this.EmployeeForm.SetFormFieldsToUpdate();
         }
@@ -214,11 +215,11 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
         {
             DisplayEmployeeForm();
             EmployeeForm.SetFormDetailsToAdd();
-        }       
+        }
 
         public void DisplayEmployeesList()
         {
             this.CurrentViewModel = EmployeesList;
-        }       
+        }
     }
 }

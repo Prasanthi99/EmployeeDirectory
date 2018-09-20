@@ -8,17 +8,17 @@ using System.Windows.Data;
 
 namespace EmployeeDirectoryUsingMVVM
 {
-    class DateConverter :IValueConverter
+    class DateConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null)
-            {
-                DateTime.TryParse(value.ToString(), out DateTime date);
-                return date.ToString("dd MMM,yyyy");
-            }
-            else
+
+            if (value == null)
                 return null;
+
+            DateTime.TryParse(value.ToString(), out DateTime date);
+            return date.ToString("dd MMM,yyyy");
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

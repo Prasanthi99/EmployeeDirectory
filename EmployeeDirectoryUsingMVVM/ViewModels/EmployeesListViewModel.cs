@@ -14,7 +14,7 @@ using EmployeeDirectoryUsingMVVM.Services;
 
 namespace EmployeeDirectoryUsingMVVM.ViewModels
 {
-    public class EmployeesListViewModel:BaseViewModel
+    public class EmployeesListViewModel : BaseViewModel
     {
         private EmployeeService employeeService;
         private MainWindowViewModel mainWindow
@@ -26,17 +26,19 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
             get
             {
                 return new DelegateCommand(AddEmployee);
-            }           
+            }
         }
         private ICommand selectEmployeeCommand;
         public ICommand SelectEmployeeCommand
         {
             get { return selectEmployeeCommand; }
-            set { selectEmployeeCommand = value;
+            set
+            {
+                selectEmployeeCommand = value;
                 OnPropertyChanged("SelectEmployeeCommand");
             }
         }
-        
+
         private bool gridViewVisibility = false;
         public bool GridViewVisibility
         {
@@ -196,7 +198,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
 
         public void DisplayEmployeeDetails(object param)
         {
-            if(SelectedEmployee != null)
+            if (SelectedEmployee != null)
                 mainWindow.DisplayEmployeeDetails(SelectedEmployee);
         }
         private void ToggleEmployeeGridView(object param)
@@ -214,7 +216,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
 
         private void Search()
         {
-            string searchText=null;
+            string searchText = null;
             if (!string.IsNullOrEmpty(SearchText))
             {
                 searchText = SearchText.ToLower().Trim();
@@ -224,7 +226,7 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
 
         private void AddEmployee(object param)
         {
-            mainWindow.DisplayEmployeeFormToAdd();            
+            mainWindow.DisplayEmployeeFormToAdd();
         }
 
         public void AddEmployee(Employee employee)
@@ -240,7 +242,6 @@ namespace EmployeeDirectoryUsingMVVM.ViewModels
         public void UpdateEmployee(Employee employee)
         {
             employeeService.UpdateEmployee(employee);
-            Employees[SelectedIndex] = employee;
             AllEmployees[AllEmployees.IndexOf(AllEmployees.FirstOrDefault(m => m.ID == employee.ID))] = employee;
             Filter();
             Search();

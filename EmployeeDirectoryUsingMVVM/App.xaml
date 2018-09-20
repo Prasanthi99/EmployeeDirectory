@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:EmployeeDirectoryUsingMVVM.ViewModels"
              xmlns:vw="clr-namespace:EmployeeDirectoryUsingMVVM.Views"
              xmlns:Model="clr-namespace:EmployeeDirectoryUsingMVVM.Models;assembly=EmployeeDirectoryUsingMVVM.Models"
-             StartupUri="Views/MainWindow.xaml">
+             >
     <Application.Resources>
 
         <DataTemplate DataType="{x:Type vm:EmployeeDetailsViewModel }">
